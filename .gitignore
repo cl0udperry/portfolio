@@ -1,0 +1,14 @@
+# Local notes and verification files
+README.md
+build-notes.md
+tests/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependency/build leftovers
+node_modules/
+dist/
+build/
