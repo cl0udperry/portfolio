@@ -49,14 +49,14 @@ const knowledge = [
     answer: "Jordan is fluent in English and Mandarin."
   },
   {
-    keys: ["contact", "email", "phone", "github", "website"],
+    keys: ["contact", "email", "github", "website"],
     answer:
-      "You can reach Jordan at jordanleong007@gmail.com, visit semio-ai.com, or review GitHub work at github.com/cl0udperry."
+      "You can reach Jordan by email at jordanleong007@gmail.com, visit semio-ai.com, or review GitHub work at github.com/cl0udperry."
   }
 ];
 
 const fallbackAnswer =
-  "I can answer from Jordan's resume: DevSecOps experience, OCBC work, Semio, revmp, certifications, education, security tools, languages, or contact details.";
+  "I can answer from Jordan's resume: DevSecOps experience, OCBC work, Semio, revmp, certifications, education, security tools, languages, or email contact.";
 
 function addMessage(text, sender = "bot") {
   const bubble = document.createElement("div");
