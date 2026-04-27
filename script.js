@@ -10,6 +10,8 @@ const personalProfile = {
   currentRole: "TISO DevSecOps & Application Security Engineer at OCBC",
   base: "Singapore",
   interests: ["tennis", "audio products", "AI security tools"],
+  audioBlog:
+    "Perrivan Audio is my website blog at perrivanaudio.com, where I share earphone reviews and thoughts on products I have tested because I love music.",
   styleNotes:
     "I like work that feels intentional: clear systems, useful tools, and a bit of personality in the details.",
   personalPitch:
@@ -62,9 +64,9 @@ const knowledge = [
     answer: "I am fluent in English and Mandarin."
   },
   {
-    keys: ["interest", "interests", "enjoy", "like", "fun", "outside", "hobby", "hobbies", "tennis", "monet", "art", "audio", "personal"],
+    keys: ["interest", "interests", "enjoy", "like", "fun", "outside", "hobby", "hobbies", "tennis", "monet", "art", "audio", "earphone", "earphones", "music", "perrivan", "perrivanaudio", "personal"],
     answer:
-      `Outside work, I like ${personalProfile.interests.join(", ")}. ${personalProfile.styleNotes}`
+      `Outside work, I like ${personalProfile.interests.join(", ")}. ${personalProfile.audioBlog} ${personalProfile.styleNotes}`
   },
   {
     keys: ["contact", "email", "github", "website"],

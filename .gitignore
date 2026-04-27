@@ -2,6 +2,8 @@
 README.md
 build-notes.md
 tests/
+DESIGN_REVIEW_PACKET.md
+playwright-*.png
 
 # OS/editor noise
 .DS_Store
