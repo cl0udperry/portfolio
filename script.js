@@ -3,60 +3,78 @@ const chatForm = document.querySelector("#chatForm");
 const chatInput = document.querySelector("#chatInput");
 const promptChips = document.querySelectorAll("[data-question]");
 
+// Furnish more personal details here. Keep each value concise; the chat answers
+// below will pull from this profile so Mini Jordan sounds like you.
+const personalProfile = {
+  name: "Jordan",
+  currentRole: "TISO DevSecOps & Application Security Engineer at OCBC",
+  base: "Singapore",
+  interests: ["tennis", "audio products", "AI security tools"],
+  styleNotes:
+    "I like work that feels intentional: clear systems, useful tools, and a bit of personality in the details.",
+  personalPitch:
+    "I enjoy the space where security, developer experience, and product thinking overlap."
+};
+
 const knowledge = [
   {
     keys: ["fit", "strong", "why", "candidate", "hire", "summary", "know"],
     answer:
-      "Jordan is strongest where AppSec meets delivery: Python automation, CI/CD security workflows, SAST/SCA/DAST/IAST adoption, Jira workflow design, and hands-on developer remediation support."
+      `I am strongest where AppSec meets delivery: Python automation, CI/CD security workflows, SAST/SCA/DAST/IAST adoption, Jira workflow design, and hands-on developer remediation support. ${personalProfile.personalPitch}`
   },
   {
     keys: ["work", "ocbc", "experience", "current", "role"],
     answer:
-      "Jordan has worked at OCBC since June 2022 and currently serves as a TISO DevSecOps & Application Security Engineer, supporting secure releases, code review, CVE remediation, vendor rollout, and developer guidance."
+      `I have worked at OCBC since June 2022, and I currently work as a ${personalProfile.currentRole}. I support secure releases, code review, CVE remediation, vendor rollout, and developer guidance.`
   },
   {
     keys: ["automation", "python", "pipeline", "ci/cd", "cicd", "jira"],
     answer:
-      "Jordan developed Python automation to reduce manual CI/CD security processes and designed automated Jira workflows to improve turnaround time, traceability, and request handling."
+      "I have built Python automation to reduce manual CI/CD security processes, and I have designed Jira workflows that improve turnaround time, traceability, and request handling."
   },
   {
     keys: ["tools", "security", "sast", "sca", "dast", "iast", "burp", "nmap"],
     answer:
-      "Jordan has used Burp Suite, SAST, SCA, DAST, IAST, Nmap, Jenkins, GitLab CI, Bitbucket, Nexus Repository, Postman, and Jira automation in security delivery workflows."
+      "I have used Burp Suite, SAST, SCA, DAST, IAST, Nmap, Jenkins, GitLab CI, Bitbucket, Nexus Repository, Postman, and Jira automation in security delivery workflows."
   },
   {
     keys: ["semio", "ai", "openai", "gemini", "fastapi", "gradio"],
     answer:
-      "Semio is Jordan's AI in DevSecOps platform: a FastAPI backend with a Gradio dashboard for vulnerability analysis, Semgrep JSON processing, contextual fix recommendations, Docker workflows, GitLab CI/CD integration, and OpenAI/Gemini-powered analysis."
+      "Semio is my AI in DevSecOps platform: a FastAPI backend with a Gradio dashboard for vulnerability analysis, Semgrep JSON processing, contextual fix recommendations, Docker workflows, GitLab CI/CD integration, and OpenAI/Gemini-powered analysis."
   },
   {
     keys: ["revmp", "vulnerability", "dashboard", "black duck", "coverity"],
     answer:
-      "revmp is an enhanced vulnerability management platform built with Python, Flask, and Chart.js. It integrates Black Duck SCA, Coverity SAST, and Jira APIs to visualize, deduplicate, and track security findings across commits."
+      "revmp is my enhanced vulnerability management platform built with Python, Flask, and Chart.js. It integrates Black Duck SCA, Coverity SAST, and Jira APIs to visualize, deduplicate, and track security findings across commits."
   },
   {
     keys: ["cert", "certification", "cdp", "aws", "ejpt"],
     answer:
-      "Jordan holds Certified DevSecOps Professional (CDP), AWS Certified Cloud Practitioner, and eJPT Junior Penetration Tester certifications."
+      "I hold the Certified DevSecOps Professional (CDP), AWS Certified Cloud Practitioner, and eJPT Junior Penetration Tester certifications."
   },
   {
     keys: ["education", "nus", "degree", "gpa", "scholarship"],
     answer:
-      "Jordan studied Mechanical Engineering with an Aeronautical Engineering specialization at the National University of Singapore, earned a 4.50/5.00 GPA, and received the NUS Merit Scholarship."
+      "I studied Mechanical Engineering with an Aeronautical Engineering specialization at the National University of Singapore, earned a 4.50/5.00 GPA, and received the NUS Merit Scholarship."
   },
   {
     keys: ["language", "mandarin", "english"],
-    answer: "Jordan is fluent in English and Mandarin."
+    answer: "I am fluent in English and Mandarin."
+  },
+  {
+    keys: ["interest", "interests", "enjoy", "like", "fun", "outside", "hobby", "hobbies", "tennis", "monet", "art", "audio", "personal"],
+    answer:
+      `Outside work, I like ${personalProfile.interests.join(", ")}. ${personalProfile.styleNotes}`
   },
   {
     keys: ["contact", "email", "github", "website"],
     answer:
-      "You can reach Jordan by email at jordanleong007@gmail.com, visit semio-ai.com, or review GitHub work at github.com/cl0udperry."
+      "You can reach me by email at jordanleong007@gmail.com, visit semio-ai.com, or review my GitHub work at github.com/cl0udperry."
   }
 ];
 
 const fallbackAnswer =
-  "I can answer from Jordan's resume: DevSecOps experience, OCBC work, Semio, revmp, certifications, education, security tools, languages, or email contact.";
+  "I might not have that detail written down yet, but I can still tell you about my work, projects, security background, education, or the things I enjoy outside work.";
 
 function addMessage(text, sender = "bot") {
   const bubble = document.createElement("div");
@@ -99,5 +117,5 @@ promptChips.forEach((chip) => {
 });
 
 addMessage(
-  "Hi, I am Mini Jordan. Ask me what Jordan has built, what he works on, or what he is curious about."
+  "Hi, I am Mini Jordan. Ask me what I have built, what I work on, or what I am curious about."
 );
