@@ -19,6 +19,15 @@ Promise.all([
     const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
 
+    // ── Nav anchor routing through Lenis ───────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const hash = a.getAttribute('href');
+        lenis.scrollTo(hash === '#' || hash === '#main' ? 0 : hash);
+      });
+    });
+
     // ── Hero entrance sequence ──────────────────────────────────────────
     animate('.hero article', { opacity: [0, 1], y: [32, 0] }, { duration: 0.8, easing: [0.16, 1, 0.3, 1] });
     animate('.nav', { opacity: [0, 1] }, { duration: 0.5, easing: 'ease-out' });
