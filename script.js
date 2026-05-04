@@ -1,3 +1,19 @@
+// ── Prevent any #-link from letting the browser do a native hash jump ────
+// Registered immediately (before vendor imports) so early clicks are caught.
+let _lenis = null;
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const hash = a.getAttribute('href');
+    if (_lenis) {
+      _lenis.scrollTo(hash === '#' || hash === '#main' ? 0 : hash);
+    } else {
+      // Lenis not ready yet — fall back to native scroll-to-top
+      window.scrollTo({ top: hash === '#' || hash === '#main' ? 0 : (document.querySelector(hash)?.offsetTop ?? 0) });
+    }
+  });
+});
+
 // ── Failsafe: show all content if libraries fail to load ──────────────────
 const revealAll = () =>
   document.querySelectorAll('.reveal').forEach((el) => {
@@ -16,17 +32,9 @@ Promise.all([
 
     // ── Smooth scroll (Lenis) ───────────────────────────────────────────
     const lenis = new Lenis({ lerp: 0.12, smoothWheel: true });
+    _lenis = lenis;
     const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
-
-    // ── Nav anchor routing through Lenis ───────────────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const hash = a.getAttribute('href');
-        lenis.scrollTo(hash === '#' || hash === '#main' ? 0 : hash);
-      });
-    });
 
     // ── Hero entrance sequence ──────────────────────────────────────────
     animate('.hero article', { opacity: [0, 1], y: [32, 0] }, { duration: 0.8, easing: [0.16, 1, 0.3, 1] });
