@@ -1,10 +1,64 @@
+import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.mjs';
+import { animate, inView, stagger } from 'https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js';
+
+// ── Smooth scroll (Lenis) ─────────────────────────────────────────────────
+const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// ── Hero entrance sequence ────────────────────────────────────────────────
+animate(
+  '.hero article',
+  { opacity: [0, 1], y: [32, 0] },
+  { duration: 0.8, easing: [0.16, 1, 0.3, 1] }
+);
+animate(
+  '.nav',
+  { opacity: [0, 1] },
+  { duration: 0.5, easing: 'ease-out' }
+);
+
+// ── Scroll reveal — sections animate as groups with stagger ───────────────
+document.querySelectorAll('section, .credential-section').forEach((section) => {
+  const targets = section.querySelectorAll('.reveal');
+  if (!targets.length) return;
+
+  inView(
+    section,
+    () => {
+      animate(
+        targets,
+        { opacity: 1, y: 0 },
+        { duration: 0.65, easing: [0.16, 1, 0.3, 1], delay: stagger(0.12) }
+      );
+    },
+    { margin: '0px 0px -60px 0px', once: true }
+  );
+});
+
+// ── Skill tags — spring pop with stagger ──────────────────────────────────
+inView(
+  '.skill-cloud',
+  () => {
+    animate(
+      '.skill-cloud span:not(.skill-group-label)',
+      { opacity: [0, 1], scale: [0.82, 1] },
+      { duration: 0.4, easing: [0.34, 1.56, 0.64, 1], delay: stagger(0.04) }
+    );
+  },
+  { once: true }
+);
+
+// ── Chat widget ───────────────────────────────────────────────────────────
 const chatLog = document.querySelector("#chatLog");
 const chatForm = document.querySelector("#chatForm");
 const chatInput = document.querySelector("#chatInput");
 const promptChips = document.querySelectorAll("[data-question]");
 
-// Furnish more personal details here. Keep each value concise; the chat answers
-// below will pull from this profile so Mini Jordan sounds like you.
 const personalProfile = {
   name: "Jordan",
   currentRole: "TISO DevSecOps & Application Security Engineer at OCBC",
@@ -135,18 +189,3 @@ promptChips.forEach((chip) => {
 addMessage(
   "Hi, I am Mini Jordan. Ask me what I have built, what I work on, or what I am curious about."
 );
-
-// ── Scroll-reveal observer ────────────────────────────────────────────────
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.1, rootMargin: "0px 0px -48px 0px" }
-);
-
-document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
