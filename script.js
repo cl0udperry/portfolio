@@ -98,13 +98,27 @@ function answerFor(question) {
   return match && match.score > 0 ? match.item.answer : fallbackAnswer;
 }
 
+function showTyping() {
+  const el = document.createElement("div");
+  el.className = "typing-indicator";
+  el.innerHTML = "<span></span><span></span><span></span>";
+  chatLog.appendChild(el);
+  chatLog.scrollTop = chatLog.scrollHeight;
+  return el;
+}
+
 function submitQuestion(question) {
   const cleanQuestion = question.trim();
   if (!cleanQuestion) return;
 
   addMessage(cleanQuestion, "user");
   chatInput.value = "";
-  window.setTimeout(() => addMessage(answerFor(cleanQuestion)), 220);
+
+  const typing = showTyping();
+  window.setTimeout(() => {
+    typing.remove();
+    addMessage(answerFor(cleanQuestion));
+  }, 700);
 }
 
 chatForm.addEventListener("submit", (event) => {
