@@ -1,57 +1,49 @@
-import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.mjs';
-import { animate, inView, stagger } from 'https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js';
+// ── Failsafe: show all content if libraries fail to load ──────────────────
+const revealAll = () =>
+  document.querySelectorAll('.reveal').forEach((el) => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+const failsafe = setTimeout(revealAll, 2500);
 
-// ── Smooth scroll (Lenis) ─────────────────────────────────────────────────
-const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+// ── Dynamic import with correct +esm paths ────────────────────────────────
+Promise.all([
+  import('https://cdn.jsdelivr.net/npm/lenis@1.1.14/+esm'),
+  import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'),
+])
+  .then(([{ default: Lenis }, { animate, inView, stagger }]) => {
+    clearTimeout(failsafe);
 
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
+    // ── Smooth scroll (Lenis) ───────────────────────────────────────────
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
 
-// ── Hero entrance sequence ────────────────────────────────────────────────
-animate(
-  '.hero article',
-  { opacity: [0, 1], y: [32, 0] },
-  { duration: 0.8, easing: [0.16, 1, 0.3, 1] }
-);
-animate(
-  '.nav',
-  { opacity: [0, 1] },
-  { duration: 0.5, easing: 'ease-out' }
-);
+    // ── Hero entrance sequence ──────────────────────────────────────────
+    animate('.hero article', { opacity: [0, 1], y: [32, 0] }, { duration: 0.8, easing: [0.16, 1, 0.3, 1] });
+    animate('.nav', { opacity: [0, 1] }, { duration: 0.5, easing: 'ease-out' });
 
-// ── Scroll reveal — sections animate as groups with stagger ───────────────
-document.querySelectorAll('section, .credential-section').forEach((section) => {
-  const targets = section.querySelectorAll('.reveal');
-  if (!targets.length) return;
-
-  inView(
-    section,
-    () => {
-      animate(
-        targets,
-        { opacity: 1, y: 0 },
-        { duration: 0.65, easing: [0.16, 1, 0.3, 1], delay: stagger(0.12) }
+    // ── Scroll reveal — staggered per section ───────────────────────────
+    document.querySelectorAll('section').forEach((section) => {
+      const targets = section.querySelectorAll('.reveal');
+      if (!targets.length) return;
+      inView(
+        section,
+        () => animate(targets, { opacity: 1, y: 0 }, { duration: 0.65, easing: [0.16, 1, 0.3, 1], delay: stagger(0.12) }),
+        { margin: '0px 0px -60px 0px' }
       );
-    },
-    { margin: '0px 0px -60px 0px', once: true }
-  );
-});
+    });
 
-// ── Skill tags — spring pop with stagger ──────────────────────────────────
-inView(
-  '.skill-cloud',
-  () => {
-    animate(
-      '.skill-cloud span:not(.skill-group-label)',
-      { opacity: [0, 1], scale: [0.82, 1] },
-      { duration: 0.4, easing: [0.34, 1.56, 0.64, 1], delay: stagger(0.04) }
+    // ── Skill tags — spring pop ─────────────────────────────────────────
+    inView('.skill-cloud', () =>
+      animate(
+        '.skill-cloud span:not(.skill-group-label)',
+        { opacity: [0, 1], scale: [0.82, 1] },
+        { duration: 0.4, easing: [0.34, 1.56, 0.64, 1], delay: stagger(0.04) }
+      )
     );
-  },
-  { once: true }
-);
+  })
+  .catch(revealAll);
 
 // ── Chat widget ───────────────────────────────────────────────────────────
 const chatLog = document.querySelector("#chatLog");
