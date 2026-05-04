@@ -8,8 +8,8 @@ const failsafe = setTimeout(revealAll, 2500);
 
 // ── Dynamic import with correct +esm paths ────────────────────────────────
 Promise.all([
-  import('https://cdn.jsdelivr.net/npm/lenis@1.1.14/+esm'),
-  import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm'),
+  import('./vendor/lenis.mjs'),
+  import('./vendor/motion.js'),
 ])
   .then(([{ default: Lenis }, { animate, inView, stagger }]) => {
     clearTimeout(failsafe);
