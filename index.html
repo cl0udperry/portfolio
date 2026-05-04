@@ -1,361 +1,1854 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="Portfolio resume for Jordan Leong, DevSecOps and Security Automation Engineer."
-    >
-    <title>Jordan Leong | DevSecOps Portfolio Resume</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,500&display=swap"
-      rel="stylesheet"
-    >
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        prefix: "tw-",
-        corePlugins: {
-          preflight: false
-        },
-        theme: {
-          extend: {
-            colors: {
-              ink: "#18211d",
-              paper: "#fbfaf3",
-              grass: "#6d8f44",
-              clay: "#c86848",
-              chalk: "#fffdf4",
-              moss: "#294335",
-              ball: "#d8f35f"
-            },
-            boxShadow: {
-              soft: "0 24px 70px rgba(24, 33, 29, 0.12)"
-            }
-          }
-        }
-      };
-    </script>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio resume for Jordan Leong, DevSecOps and Security Automation Engineer." />
+  <title>Jordan Leong — DevSecOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-    <header class="hero">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="#" aria-label="Jordan Leong home">
-          <span class="brand-mark">JL</span>
-          <span>Jordan Leong</span>
-        </a>
-        <div class="nav-links">
-          <a href="#work">Work</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-          <a class="button button-small" href="#chat">Chat with me</a>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F4EFE6;
+      --bg2:       #EDE7DB;
+      --ink:       #1A1410;
+      --ink2:      #5C5248;
+      --ink3:      #9C8E82;
+      --accent:    oklch(52% 0.13 38);
+      --accent2:   oklch(52% 0.13 210);
+      --line:      rgba(26,20,16,0.12);
+      --line-bold: rgba(26,20,16,0.35);
+      --mono:      'JetBrains Mono', monospace;
+      --display:   'Barlow Condensed', sans-serif;
+      --body:      'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── COURT LINE GEOMETRY ── */
+    .court-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .court-bg svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.045;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 56px;
+      background: rgba(244,239,230,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 56px;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      position: relative;
+      padding: 96px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    hr.court-line {
+      border: none;
+      height: 1px;
+      background: var(--line-bold);
+      margin: 0;
+    }
+
+    hr.court-line-full {
+      border: none;
+      height: 1px;
+      background: var(--line);
+      margin: 0;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: calc(100vh - 56px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      gap: 0;
+      padding: 0 48px;
+      max-width: 100%;
+      align-items: center;
+    }
+
+    .hero-left {
+      padding: 80px 0;
+      border-right: 1px solid var(--line-bold);
+      padding-right: 64px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(72px, 9vw, 128px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero-name span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      font-family: var(--body);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--ink2);
+      max-width: 440px;
+      margin-bottom: 48px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-ghost {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line-bold);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-right {
+      padding: 80px 0 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .hero-stat {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
+    }
+    .hero-stat:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .hero-stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 6px;
+    }
+    .hero-stat-value {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-bottom-bar {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--line-bold);
+      padding: 20px 0;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-bottom-item {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+    .hero-bottom-item a {
+      color: var(--ink3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .hero-bottom-item a:hover { color: var(--accent); }
+
+    /* ── SCROLL FADE-IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── ABOUT STRIP ── */
+    #about {
+      background: var(--ink);
+      color: var(--bg);
+      max-width: 100%;
+      padding: 80px 48px;
+    }
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .about-title {
+      font-family: var(--display);
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .about-body {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(244,239,230,0.72);
+      margin-bottom: 32px;
+    }
+    .about-body strong {
+      color: var(--bg);
+      font-weight: 500;
+    }
+    .about-meta {
+      display: flex;
+      gap: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(244,239,230,0.12);
+    }
+    .about-meta-item {}
+    .about-meta-key {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(244,239,230,0.38);
+      margin-bottom: 4px;
+    }
+    .about-meta-val {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--bg);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {}
+    .section-heading {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      margin-bottom: 64px;
+    }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      padding: 40px 0;
+      border-top: 1px solid var(--line);
+      transition: background 0.2s;
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+      padding-top: 4px;
+    }
+
+    .exp-right {}
+    .exp-company {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .exp-role {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exp-bullets li {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.55;
+      padding-left: 20px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--bg2);
+      max-width: 100%;
+      padding: 96px 48px;
+    }
+    .projects-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+      cursor: default;
+    }
+    .project-card:hover { transform: translateY(-3px); }
+
+    .project-num {
+      font-family: var(--display);
+      font-size: 96px;
+      font-weight: 800;
+      color: var(--line);
+      position: absolute;
+      top: 16px;
+      right: 32px;
+      line-height: 1;
+      pointer-events: none;
+      transition: color 0.2s;
+    }
+    .project-card:hover .project-num { color: rgba(180,68,26,0.1); }
+
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+    }
+    .project-title {
+      font-family: var(--display);
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    .project-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line-bold);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .project-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── SKILLS ── */
+    #skills {}
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 64px;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .skill-cell {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 24px;
+    }
+    .skill-category {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .skill-item {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+
+    /* ── INTERESTS ── */
+    #interests {
+      background: var(--ink);
+      max-width: 100%;
+      padding: 96px 48px;
+    }
+    .interests-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .interests-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+    .interest-card {
+      background: rgba(244,239,230,0.04);
+      border: 1px solid rgba(244,239,230,0.08);
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .interest-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .interest-card:hover::before { opacity: 1; }
+
+    .interest-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 28px;
+      opacity: 0.6;
+    }
+    .interest-title {
+      font-family: var(--display);
+      font-size: 32px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--bg);
+      margin-bottom: 16px;
+    }
+    .interest-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(244,239,230,0.55);
+    }
+    .interest-body a {
+      color: rgba(244,239,230,0.8);
+      text-underline-offset: 3px;
+    }
+
+    /* ── CREDENTIALS ── */
+    #credentials {}
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 64px;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .cred-cell {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 40px 36px;
+    }
+    .cred-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 16px;
+    }
+    .cred-title {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .cred-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.5;
+    }
+
+    /* ── CHAT ── */
+    #chat-section {
+      background: var(--bg2);
+      max-width: 100%;
+      padding: 96px 48px;
+    }
+    .chat-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    #contact {
+      padding: 96px 48px 64px;
+      max-width: 100%;
+      border-top: 1px solid var(--line-bold);
+    }
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-headline {
+      font-family: var(--display);
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.93;
+      letter-spacing: -0.01em;
+    }
+    .contact-headline span { color: var(--accent); }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 8px;
+    }
+    .contact-link-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+    }
+    .contact-link-key {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      min-width: 64px;
+    }
+    .contact-link-val {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .contact-link-val:hover { color: var(--accent); }
+
+    .footer-bar {
+      max-width: 1200px;
+      margin: 64px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+    }
+
+    /* ── CHAT WIDGET ── */
+    .chat-widget {
+      background: var(--bg);
+      border: 1px solid var(--line-bold);
+      max-width: 680px;
+    }
+    .chat-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-header-title {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .chat-status {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chat-status::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+    }
+    .chat-messages {
+      height: 320px;
+      overflow-y: auto;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .chat-msg {
+      max-width: 85%;
+    }
+    .chat-msg.user { align-self: flex-end; }
+    .chat-msg.bot { align-self: flex-start; }
+    .chat-bubble {
+      padding: 12px 16px;
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .chat-msg.bot .chat-bubble {
+      background: var(--bg2);
+      color: var(--ink);
+    }
+    .chat-msg.user .chat-bubble {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .chat-msg-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 6px;
+    }
+    .chat-msg.user .chat-msg-label { text-align: right; }
+    .chat-form {
+      display: flex;
+      border-top: 1px solid var(--line);
+    }
+    .chat-input {
+      flex: 1;
+      padding: 16px 20px;
+      border: none;
+      background: transparent;
+      font-family: var(--body);
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+    }
+    .chat-input::placeholder { color: var(--ink3); }
+    .chat-send {
+      padding: 16px 24px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chat-send:hover { background: var(--accent); }
+    .chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .quick-chips {
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid var(--line);
+    }
+    .chip {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid var(--line-bold);
+      background: transparent;
+      cursor: pointer;
+      color: var(--ink2);
+      transition: all 0.2s;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { border-right: none; border-bottom: 1px solid var(--line-bold); padding-right: 0; }
+      .hero-right { padding-left: 0; }
+      .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .projects-grid, .interests-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .cred-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 24px; }
+      section { padding: 72px 24px; }
+      #about, #projects, #interests, #chat-section, #contact { padding: 72px 24px; }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Court-line background geometry -->
+  <div class="court-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- outer boundary -->
+      <rect x="120" y="80" width="1200" height="740" stroke="#1A1410" stroke-width="1.5"/>
+      <!-- centre line (vertical) -->
+      <line x1="720" y1="80" x2="720" y2="820" stroke="#1A1410" stroke-width="1"/>
+      <!-- service line left -->
+      <line x1="120" y1="303" x2="720" y2="303" stroke="#1A1410" stroke-width="1"/>
+      <!-- service line right -->
+      <line x1="720" y1="303" x2="1320" y2="303" stroke="#1A1410" stroke-width="1"/>
+      <!-- service line bottom left -->
+      <line x1="120" y1="597" x2="720" y2="597" stroke="#1A1410" stroke-width="1"/>
+      <!-- service line bottom right -->
+      <line x1="720" y1="597" x2="1320" y2="597" stroke="#1A1410" stroke-width="1"/>
+      <!-- centre service line horizontal -->
+      <line x1="120" y1="450" x2="1320" y2="450" stroke="#1A1410" stroke-width="1.5"/>
+      <!-- T mark left -->
+      <line x1="420" y1="303" x2="420" y2="597" stroke="#1A1410" stroke-width="1"/>
+      <!-- T mark right -->
+      <line x1="1020" y1="303" x2="1020" y2="597" stroke="#1A1410" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#hero" class="nav-logo">JL</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#chat-section">Chat</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-left fade-in">
+        <div class="hero-eyebrow">DevSecOps Engineer</div>
+        <h1 class="hero-name">Jordan<span>Leong</span></h1>
+        <p class="hero-tagline">Security automation, CI/CD workflows, vulnerability management, and AI-assisted remediation.</p>
+        <div class="hero-ctas">
+          <a href="#experience" class="btn-primary">View Work</a>
+          <a href="#contact" class="btn-ghost">Get In Touch</a>
         </div>
-      </nav>
-
-      <main id="main" class="tw-relative tw-z-[1] tw-mx-auto tw-w-full tw-max-w-[1180px]">
-        <article class="tw-grid tw-w-full tw-overflow-hidden tw-rounded-2xl tw-border tw-border-ink/10 tw-bg-white/90 tw-shadow-soft tw-backdrop-blur lg:tw-grid-cols-[0.82fr_1.18fr]">
-          <section class="tw-relative tw-min-h-72 tw-overflow-hidden tw-bg-[#eef3e2] tw-p-6 sm:tw-p-8" aria-label="Jordan Leong portfolio card">
-            <div class="tw-absolute -tw-left-24 tw-top-10 tw-h-52 tw-w-80 -tw-rotate-12 tw-rounded-[48%] tw-bg-grass/20"></div>
-            <div class="tw-absolute -tw-right-20 tw-bottom-6 tw-h-48 tw-w-72 tw-rotate-[10deg] tw-rounded-[48%] tw-bg-clay/18"></div>
-            <div class="tw-absolute tw-left-8 tw-right-8 tw-top-1/2 tw-h-px tw-bg-chalk/80"></div>
-            <div class="tw-absolute tw-left-1/2 tw-top-8 tw-h-[82%] tw-w-px tw-rotate-[7deg] tw-bg-chalk/85"></div>
-            <div class="tw-absolute tw-right-10 tw-top-10 tw-h-10 tw-w-10 tw-rounded-full tw-border tw-border-ink/30 tw-bg-ball tw-shadow-[0_14px_30px_rgba(24,33,29,0.16)]"></div>
-
-            <div class="tw-relative tw-flex tw-h-full tw-flex-col tw-justify-between">
-              <div>
-                <p class="tw-text-xs tw-font-bold tw-uppercase tw-tracking-[0.18em] tw-text-moss/70">DevSecOps portfolio</p>
-                <h1 id="page-title" class="tw-mt-4 tw-max-w-xs tw-text-4xl tw-font-semibold tw-leading-[0.98] tw-tracking-normal tw-text-ink sm:tw-text-5xl">
-                  Jordan Leong
-                </h1>
-              </div>
-
-              <div class="tw-mt-20 tw-rounded-xl tw-border tw-border-white/60 tw-bg-white/70 tw-p-4 tw-backdrop-blur">
-                <p class="tw-m-0 tw-font-['Space_Grotesk'] tw-text-sm tw-font-semibold tw-text-ink">DevSecOps engineer & AppSec builder</p>
-                <p class="tw-mb-0 tw-mt-2 tw-text-sm tw-leading-6 tw-text-ink/60">
-                  Security automation, CI/CD workflows, vulnerability management, and AI-assisted remediation.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section class="tw-p-6 sm:tw-p-8 lg:tw-p-10" aria-labelledby="page-title">
-            <div class="tw-flex tw-flex-wrap tw-gap-2">
-              <span class="tw-rounded-full tw-bg-moss/10 tw-px-3 tw-py-1 tw-text-xs tw-font-bold tw-uppercase tw-tracking-[0.14em] tw-text-moss">
-                Security automation
-              </span>
-              <span class="tw-rounded-full tw-bg-clay/10 tw-px-3 tw-py-1 tw-text-xs tw-font-bold tw-uppercase tw-tracking-[0.14em] tw-text-ink/60">
-                Builder mindset
-              </span>
-            </div>
-
-            <h2 class="tw-mt-7 tw-max-w-xl tw-font-['Space_Grotesk'] tw-text-3xl tw-font-semibold tw-leading-[1.02] tw-tracking-normal tw-text-ink sm:tw-text-4xl">
-              I turn security friction into systems that help teams ship with confidence.
-            </h2>
-            <p class="tw-mt-5 tw-max-w-2xl tw-text-base tw-leading-8 tw-text-ink/65">
-              Currently focused on secure delivery, SAST/SCA/DAST/IAST adoption, Jira automation,
-              secure code review, and practical AI tooling for AppSec workflows.
-            </p>
-
-            <dl class="tw-mt-8 tw-grid tw-gap-3 sm:tw-grid-cols-3">
-              <div class="tw-rounded-xl tw-border tw-border-ink/10 tw-p-4">
-                <dt class="tw-font-['Space_Grotesk'] tw-text-sm tw-font-semibold">Current</dt>
-                <dd class="tw-m-0 tw-mt-2 tw-text-sm tw-text-ink/58">OCBC TISO</dd>
-              </div>
-              <div class="tw-rounded-xl tw-border tw-border-ink/10 tw-p-4">
-                <dt class="tw-font-['Space_Grotesk'] tw-text-sm tw-font-semibold">Projects</dt>
-                <dd class="tw-m-0 tw-mt-2 tw-text-sm tw-text-ink/58">Semio, revmp</dd>
-              </div>
-              <div class="tw-rounded-xl tw-border tw-border-ink/10 tw-p-4">
-                <dt class="tw-font-['Space_Grotesk'] tw-text-sm tw-font-semibold">Base</dt>
-                <dd class="tw-m-0 tw-mt-2 tw-text-sm tw-text-ink/58">Singapore</dd>
-              </div>
-            </dl>
-
-          </section>
-        </article>
-      </main>
-    </header>
-
-    <section class="strip" id="contact" aria-label="Contact and links">
-      <span>jordanleong007@gmail.com</span>
-      <span>semio-ai.com</span>
-      <span>github.com/cl0udperry</span>
-    </section>
-
-    <section class="section section-grid" id="work">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Experience</p>
-        <h2>Secure delivery at enterprise scale.</h2>
       </div>
-      <article class="timeline-card reveal reveal-d1">
-        <p class="timeline-date">Jun 2022 - Present</p>
-        <h3>Overseas Chinese Banking Corporation (OCBC)</h3>
-        <p class="role">TISO - DevSecOps & Application Security Engineer</p>
-        <ul>
-          <li>Built Python automation to reduce manual CI/CD security processes.</li>
-          <li>Designed automated Jira workflows that improved request turnaround and traceability.</li>
-          <li>Led IAST and DAST implementation through vendor collaboration and internal rollout.</li>
-          <li>Managed CVE remediation using enterprise SCA tooling and deadline-driven workflows.</li>
-          <li>Performed secure code reviews, SAST remediation support, and Burp Suite penetration testing.</li>
-        </ul>
-      </article>
-      <article class="timeline-card timeline-card-muted reveal reveal-d2">
-        <p class="timeline-date">Jun 2022 - Jun 2024</p>
-        <h3>OCBC Management Associate Program</h3>
-        <p>
-          Rotations across web application security testing, Java microservice API development for HCM,
-          and software procurement/sourcing analysis.
-        </p>
-      </article>
-    </section>
-
-    <section class="section projects" id="projects">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Selected projects</p>
-        <h2>Proof that the security ideas ship.</h2>
+      <div class="hero-right fade-in" style="transition-delay:0.15s">
+        <div class="hero-stat">
+          <div class="hero-stat-label">Current Role</div>
+          <div class="hero-stat-value">TISO — OCBC</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Specialisation</div>
+          <div class="hero-stat-value">AppSec &amp; DevSecOps</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Base</div>
+          <div class="hero-stat-value">Singapore</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Projects</div>
+          <div class="hero-stat-value">Semio / revmp</div>
+        </div>
       </div>
-      <div class="project-grid">
-        <article class="project-card reveal reveal-d1">
-          <div class="project-number">01</div>
-          <h3>revmp - Enhanced Vulnerability Management Platform</h3>
-          <p>
-            A Flask and Chart.js dashboard for visualizing vulnerability data across commits, integrating
-            Black Duck SCA, Coverity SAST, and Jira APIs for tracking and deduplication.
-          </p>
-          <a href="https://github.com/cl0udperry/revmp" target="_blank" rel="noreferrer">Open project</a>
-        </article>
-        <article class="project-card reveal reveal-d2">
-          <div class="project-number">02</div>
-          <h3>Semio - AI in DevSecOps Security Platform</h3>
-          <p>
-            FastAPI and Gradio platform for AI-powered vulnerability analysis, Semgrep pipeline ingestion,
-            contextual fix recommendations, Docker workflows, and automated security reporting.
-          </p>
-          <a href="https://semio-ai.com" target="_blank" rel="noreferrer">Visit Semio</a>
-        </article>
+      <div class="hero-bottom-bar fade-in" style="transition-delay:0.3s">
+        <div class="hero-bottom-item"><a href="mailto:jordanleong007@gmail.com">jordanleong007@gmail.com</a></div>
+        <div class="hero-bottom-item"><a href="https://github.com/cl0udperry" target="_blank" rel="noopener">github.com/cl0udperry</a></div>
+        <div class="hero-bottom-item"><a href="https://semio-ai.com" target="_blank" rel="noopener">semio-ai.com</a></div>
       </div>
     </section>
 
-    <section class="section skills-section" aria-labelledby="skills-title">
-      <div class="reveal">
-        <p class="eyebrow">Toolbox</p>
-        <h2 id="skills-title">Comfortable from pipeline to proof-of-exploit.</h2>
-      </div>
-      <div class="skill-cloud reveal reveal-d1" aria-label="Technical skills">
-        <span class="skill-group-label">Languages</span>
-        <span class="skill-lang">Python</span>
-        <span class="skill-lang">Java</span>
-        <span class="skill-lang">Shell</span>
-        <span class="skill-lang">Groovy</span>
-        <span class="skill-group-label">Frameworks</span>
-        <span class="skill-framework">Flask</span>
-        <span class="skill-framework">FastAPI</span>
-        <span class="skill-group-label">Security</span>
-        <span class="skill-security">Burp Suite</span>
-        <span class="skill-security">SAST</span>
-        <span class="skill-security">SCA</span>
-        <span class="skill-security">DAST</span>
-        <span class="skill-security">IAST</span>
-        <span class="skill-group-label">CI/CD &amp; Cloud</span>
-        <span class="skill-cicd">Jenkins</span>
-        <span class="skill-cicd">GitLab CI</span>
-        <span class="skill-cicd">Jira Automation</span>
-        <span class="skill-cicd">AWS</span>
-        <span class="skill-group-label">AI &amp; APIs</span>
-        <span class="skill-ai">OpenAI APIs</span>
-      </div>
-    </section>
-
-    <section class="section personal-section" aria-labelledby="personal-title">
-      <div class="reveal">
-        <p class="eyebrow">Beyond the terminal</p>
-        <h2 id="personal-title">Interests that sharpen how I work.</h2>
-      </div>
-      <div class="personal-grid">
-        <article class="personal-card-tennis reveal reveal-d1">
-          <h3>Tennis</h3>
-          <p>
-            I enjoy the tactical rhythm of tennis outside work: patience, momentum, and the small
-            adjustments that change a rally.
-          </p>
-        </article>
-        <article class="reveal reveal-d2">
-          <h3>Audio and products</h3>
-          <p>
-            I write about earphones and products I have tested at
-            <a href="https://perrivanaudio.com" target="_blank" rel="noreferrer">perrivanaudio.com</a>,
-            shaped by a long-running love for music.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section credential-section" aria-labelledby="credential-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Credentials</p>
-        <h2 id="credential-title">Certified, globally exposed, and product-minded.</h2>
-      </div>
-      <div class="credential-grid">
-        <article class="reveal reveal-d1">
-          <h3>Certifications</h3>
-          <p>Certified DevSecOps Professional (CDP), AWS Certified Cloud Practitioner, and eJPT Junior Penetration Tester.</p>
-        </article>
-        <article class="reveal reveal-d2">
-          <h3>Education</h3>
-          <p>
-            National University of Singapore, Bachelor of Engineering (Hons), Mechanical Engineering
-            with Aeronautical Engineering specialization. CAP/GPA: 4.50 / 5.00.
-          </p>
-        </article>
-        <article class="reveal reveal-d3">
-          <h3>Additional signal</h3>
-          <p>
-            Fluent in English and Mandarin. Founder of Perrivan Audio Review Website and the Semio AI project.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section chat-section" id="chat">
-      <div class="mini-me-card">
-        <figure class="mini-avatar identity-avatar" aria-hidden="true">
-          <span class="presence-dot" aria-hidden="true"></span>
-          <svg viewBox="0 0 320 320" role="img">
-            <defs>
-              <linearGradient id="avatarField" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#111818" />
-                <stop offset="0.56" stop-color="#233d32" />
-                <stop offset="1" stop-color="#c45c45" />
-              </linearGradient>
-              <linearGradient id="avatarFigure" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#fffdf2" />
-                <stop offset="0.58" stop-color="#d8f35f" />
-                <stop offset="1" stop-color="#2f9a92" />
-              </linearGradient>
-              <filter id="avatarGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="7" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <rect width="320" height="320" rx="8" fill="url(#avatarField)" />
-            <path d="M-18 82 H338 M-18 166 H338 M-18 250 H338 M92 -20 V340 M228 -20 V340" stroke="#fffdf2" stroke-width="1.5" opacity="0.12" />
-            <path d="M34 74 C96 42 182 54 266 30" fill="none" stroke="#d8f35f" stroke-width="12" stroke-linecap="round" opacity="0.18" />
-            <path d="M18 266 C92 230 218 244 302 214" fill="none" stroke="#fffdf2" stroke-width="2" opacity="0.28" />
-            <path d="M78 270 L132 80 L250 34 L216 254 Z" fill="#0f1515" opacity="0.42" />
-
-            <ellipse cx="206" cy="145" rx="58" ry="96" fill="none" stroke="#fffdf2" stroke-width="6" opacity="0.78" transform="rotate(22 206 145)" />
-            <ellipse cx="206" cy="145" rx="39" ry="74" fill="none" stroke="#d8f35f" stroke-width="2.5" opacity="0.56" transform="rotate(22 206 145)" />
-            <path d="M222 232 L258 292" stroke="#fffdf2" stroke-width="9" stroke-linecap="round" />
-            <path d="M172 92 L238 198 M152 140 L260 128 M178 212 L244 76" stroke="#fffdf2" stroke-width="1.5" opacity="0.28" />
-
-            <path d="M103 84 L158 58 L208 83 L196 138 L153 159 L106 136 Z" fill="url(#avatarFigure)" stroke="#fffdf2" stroke-width="3" />
-            <path d="M103 84 L158 58 L145 111 L106 136 Z" fill="#c45c45" opacity="0.72" />
-            <path d="M158 58 L208 83 L145 111 Z" fill="#fffdf2" opacity="0.82" />
-            <path d="M145 111 L196 138 L153 159 Z" fill="#2f9a92" opacity="0.9" />
-            <path d="M125 105 L139 101 M166 102 L181 106" stroke="#111818" stroke-width="4" stroke-linecap="round" />
-            <path d="M144 130 C154 137 170 135 178 126" fill="none" stroke="#111818" stroke-width="3" stroke-linecap="round" />
-
-            <path d="M78 172 L150 148 L216 180 L230 282 L70 282 Z" fill="#fffdf2" stroke="#111818" stroke-width="5" />
-            <path d="M82 178 L148 204 L216 182" fill="none" stroke="#d8f35f" stroke-width="10" opacity="0.72" />
-            <path d="M86 206 L54 264" stroke="#c45c45" stroke-width="18" stroke-linecap="round" />
-            <path d="M214 202 L248 258" stroke="#d98a55" stroke-width="18" stroke-linecap="round" />
-            <path d="M86 282 L224 282 L204 314 L104 314 Z" fill="#18211d" />
-
-            <circle cx="62" cy="72" r="14" fill="#d8f35f" filter="url(#avatarGlow)" />
-            <circle cx="274" cy="92" r="5" fill="#d8f35f" opacity="0.88" />
-            <circle cx="44" cy="226" r="5" fill="#fffdf2" opacity="0.76" />
-            <path d="M62 58 C72 69 72 78 62 86 M72 57 C58 68 58 78 72 87" fill="none" stroke="#fffdf2" stroke-width="2" />
-          </svg>
-        </figure>
+    <!-- ABOUT -->
+    <div id="about">
+      <div class="about-inner fade-in">
         <div>
-          <p class="eyebrow">Mini me</p>
-          <h2>Ask about my work.</h2>
-          <p>
-            Mini Jordan is a local, resume-grounded chat widget that answers in my voice. Ask about
-            security automation, projects, certifications, education, interests, or email contact.
+          <div class="about-label">About</div>
+          <h2 class="about-title">Security as a system, not a gate.</h2>
+        </div>
+        <div>
+          <p class="about-body">
+            I turn <strong>security friction into systems</strong> that help teams ship with confidence.
+            Currently focused on secure delivery, SAST/SCA/DAST/IAST adoption, Jira automation,
+            secure code review, and practical <strong>AI tooling for AppSec workflows</strong>.
           </p>
+          <p class="about-body">
+            I approach security the same way I approach a tennis match — <strong>patience, positioning, and the small adjustments
+            that change momentum</strong>. Enterprise-scale at OCBC, side projects that ship real product.
+          </p>
+          <div class="about-meta">
+            <div class="about-meta-item">
+              <div class="about-meta-key">Degree</div>
+              <div class="about-meta-val">NUS B.Eng Mech/Aero</div>
+            </div>
+            <div class="about-meta-item">
+              <div class="about-meta-key">GPA</div>
+              <div class="about-meta-val">4.50 / 5.00</div>
+            </div>
+            <div class="about-meta-item">
+              <div class="about-meta-key">Languages</div>
+              <div class="about-meta-val">EN / ZH</div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="chat-panel" role="region" aria-label="Chat with Mini Jordan">
-        <div class="chat-log" id="chatLog" aria-live="polite"></div>
-        <form class="chat-form" id="chatForm">
-          <label class="sr-only" for="chatInput">Message Mini Jordan</label>
-          <input
-            id="chatInput"
-            name="message"
-            type="text"
-            autocomplete="off"
-            placeholder="Ask about security tools..."
-          >
-          <button class="button" type="submit">Send</button>
-        </form>
-        <div class="prompt-chips" aria-label="Suggested questions">
-          <button type="button" data-question="What should I know about Jordan?">About Jordan</button>
-          <button type="button" data-question="Tell me about Jordan's work at OCBC.">OCBC</button>
-          <button type="button" data-question="What projects has Jordan built?">Side projects</button>
-          <button type="button" data-question="What security tools does Jordan use?">Security tools</button>
-          <button type="button" data-question="Tell me about Semio.">Semio</button>
-          <button type="button" data-question="What does Jordan enjoy outside work?">Interests</button>
-          <button type="button" data-question="What certifications does Jordan have?">Certifications</button>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label fade-in">Experience</div>
+      <h2 class="section-heading fade-in">Secure delivery<br/>at enterprise scale.</h2>
+      <div class="exp-list">
+        <div class="exp-item fade-in">
+          <div class="exp-date">Jun 2022<br/>Present</div>
+          <div class="exp-right">
+            <div class="exp-company">OCBC</div>
+            <div class="exp-role">TISO — DevSecOps &amp; Application Security Engineer</div>
+            <ul class="exp-bullets">
+              <li>Built Python automation to reduce manual CI/CD security processes.</li>
+              <li>Designed automated Jira workflows that improved request turnaround and traceability.</li>
+              <li>Led IAST and DAST implementation through vendor collaboration and internal rollout.</li>
+              <li>Managed CVE remediation using enterprise SCA tooling and deadline-driven workflows.</li>
+              <li>Performed secure code reviews, SAST remediation support, and Burp Suite penetration testing.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item fade-in">
+          <div class="exp-date">Jun 2022<br/>Jun 2024</div>
+          <div class="exp-right">
+            <div class="exp-company">OCBC MA</div>
+            <div class="exp-role">Management Associate Program</div>
+            <ul class="exp-bullets">
+              <li>Web application security testing rotation.</li>
+              <li>Java microservice API development for HCM systems.</li>
+              <li>Software procurement and sourcing analysis.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <p>Jordan Leong &mdash; DevSecOps &amp; Security Automation Engineer</p>
-      <p class="footer-meta">&copy; 2026 &nbsp;·&nbsp; <a href="mailto:jordanleong007@gmail.com">jordanleong007@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/cl0udperry" target="_blank" rel="noreferrer">github.com/cl0udperry</a></p>
-    </footer>
+    <hr class="court-line-full" />
 
-    <script type="module" src="script.js"></script>
-  </body>
+    <!-- PROJECTS -->
+    <div id="projects">
+      <div class="projects-inner">
+        <div class="section-label fade-in">Selected Projects</div>
+        <h2 class="section-heading fade-in">Proof that the<br/>security ideas ship.</h2>
+        <div class="projects-grid">
+          <div class="project-card fade-in">
+            <div class="project-num">01</div>
+            <div class="project-tag">Flask · Chart.js · SCA · SAST · Jira API</div>
+            <h3 class="project-title">revmp</h3>
+            <p class="project-desc">Enhanced Vulnerability Management Platform. A dashboard for visualising vulnerability data across commits, integrating Black Duck SCA, Coverity SAST, and Jira APIs for tracking and deduplication.</p>
+            <a href="https://github.com/cl0udperry/revmp" target="_blank" rel="noopener" class="project-link">Open project</a>
+          </div>
+          <div class="project-card fade-in" style="transition-delay:0.1s">
+            <div class="project-num">02</div>
+            <div class="project-tag">FastAPI · Gradio · Semgrep · Docker · AI</div>
+            <h3 class="project-title">Semio</h3>
+            <p class="project-desc">AI in DevSecOps Security Platform. FastAPI and Gradio platform for AI-powered vulnerability analysis, Semgrep pipeline ingestion, contextual fix recommendations, and automated security reporting.</p>
+            <a href="https://semio-ai.com" target="_blank" rel="noopener" class="project-link">Visit Semio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label fade-in">Toolbox</div>
+      <h2 class="section-heading fade-in">Comfortable from<br/>pipeline to proof-of-exploit.</h2>
+      <div class="skills-grid fade-in">
+        <div class="skill-cell">
+          <div class="skill-category">Languages</div>
+          <div class="skill-items">
+            <div class="skill-item">Python</div>
+            <div class="skill-item">Java</div>
+            <div class="skill-item">Shell</div>
+            <div class="skill-item">Groovy</div>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-category">Security</div>
+          <div class="skill-items">
+            <div class="skill-item">Burp Suite</div>
+            <div class="skill-item">SAST</div>
+            <div class="skill-item">SCA</div>
+            <div class="skill-item">DAST · IAST</div>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-category">CI/CD &amp; Cloud</div>
+          <div class="skill-items">
+            <div class="skill-item">Jenkins</div>
+            <div class="skill-item">GitLab CI</div>
+            <div class="skill-item">AWS</div>
+            <div class="skill-item">Docker</div>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-category">Frameworks</div>
+          <div class="skill-items">
+            <div class="skill-item">Flask</div>
+            <div class="skill-item">FastAPI</div>
+            <div class="skill-item">Gradio</div>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-category">AI &amp; APIs</div>
+          <div class="skill-items">
+            <div class="skill-item">OpenAI APIs</div>
+            <div class="skill-item">Semgrep</div>
+            <div class="skill-item">Jira Auto.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="court-line-full" />
+
+    <!-- INTERESTS -->
+    <div id="interests">
+      <div class="interests-inner">
+        <div class="about-label fade-in">Beyond the terminal</div>
+        <h2 class="section-heading fade-in" style="color:var(--bg)">Interests that sharpen<br/>how I work.</h2>
+        <div class="interests-grid">
+          <div class="interest-card fade-in">
+            <!-- Tennis court SVG icon -->
+            <svg class="interest-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="10" width="32" height="20" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="20" y1="10" x2="20" y2="30" stroke="#F4EFE6" stroke-width="1"/>
+              <line x1="4" y1="20" x2="36" y2="20" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="4" y1="16" x2="20" y2="16" stroke="#F4EFE6" stroke-width="0.8"/>
+              <line x1="20" y1="16" x2="36" y2="16" stroke="#F4EFE6" stroke-width="0.8"/>
+              <line x1="4" y1="24" x2="20" y2="24" stroke="#F4EFE6" stroke-width="0.8"/>
+              <line x1="20" y1="24" x2="36" y2="24" stroke="#F4EFE6" stroke-width="0.8"/>
+              <line x1="12" y1="16" x2="12" y2="24" stroke="#F4EFE6" stroke-width="0.8"/>
+              <line x1="28" y1="16" x2="28" y2="24" stroke="#F4EFE6" stroke-width="0.8"/>
+            </svg>
+            <h3 class="interest-title">Tennis</h3>
+            <p class="interest-body">I enjoy the tactical rhythm of tennis outside work: patience, momentum, and the small adjustments that change a rally. The game rewards preparation and composure under pressure — useful instincts.</p>
+          </div>
+          <div class="interest-card fade-in" style="transition-delay:0.1s">
+            <!-- Audio waveform icon -->
+            <svg class="interest-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="20" x2="8" y2="20" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="10" y1="14" x2="10" y2="26" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="14" y1="10" x2="14" y2="30" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="18" y1="16" x2="18" y2="24" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="22" y1="12" x2="22" y2="28" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="26" y1="15" x2="26" y2="25" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="30" y1="18" x2="30" y2="22" stroke="#F4EFE6" stroke-width="1.2"/>
+              <line x1="32" y1="20" x2="36" y2="20" stroke="#F4EFE6" stroke-width="1.2"/>
+            </svg>
+            <h3 class="interest-title">Audio</h3>
+            <p class="interest-body">I review earphones and products at <a href="https://perrivanaudio.com" target="_blank" rel="noopener">perrivanaudio.com</a>, shaped by a long-running love for music. Writing about what you hear trains honest, precise observation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREDENTIALS -->
+    <section id="credentials">
+      <div class="section-label fade-in">Credentials</div>
+      <h2 class="section-heading fade-in">Certified, globally exposed,<br/>and product-minded.</h2>
+      <div class="cred-grid fade-in">
+        <div class="cred-cell">
+          <div class="cred-label">Certification</div>
+          <div class="cred-title">Certified DevSecOps Professional</div>
+          <div class="cred-sub">CDP</div>
+        </div>
+        <div class="cred-cell">
+          <div class="cred-label">Certification</div>
+          <div class="cred-title">AWS Certified Cloud Practitioner</div>
+          <div class="cred-sub">Amazon Web Services</div>
+        </div>
+        <div class="cred-cell">
+          <div class="cred-label">Certification</div>
+          <div class="cred-title">eJPT Junior Penetration Tester</div>
+          <div class="cred-sub">eLearnSecurity</div>
+        </div>
+        <div class="cred-cell">
+          <div class="cred-label">Education</div>
+          <div class="cred-title">National University of Singapore</div>
+          <div class="cred-sub">B.Eng (Hons) Mechanical · Aeronautical specialisation · CAP 4.50/5.00</div>
+        </div>
+        <div class="cred-cell">
+          <div class="cred-label">Languages</div>
+          <div class="cred-title">English &amp; Mandarin</div>
+          <div class="cred-sub">Fluent in both</div>
+        </div>
+        <div class="cred-cell">
+          <div class="cred-label">Founder</div>
+          <div class="cred-title">Semio · Perrivan Audio</div>
+          <div class="cred-sub">Two active side projects with real users</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="court-line-full" />
+
+    <!-- CHAT -->
+    <div id="chat-section">
+      <div class="chat-inner">
+        <div class="section-label fade-in">Mini Jordan</div>
+        <h2 class="section-heading fade-in">Ask about my work.</h2>
+        <div id="chat-root" class="fade-in"></div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact">
+      <div class="contact-inner">
+        <div class="fade-in">
+          <h2 class="contact-headline">Let's<br/><span>talk</span><br/>security.</h2>
+        </div>
+        <div class="contact-links fade-in">
+          <div class="contact-link-item">
+            <span class="contact-link-key">Email</span>
+            <a href="mailto:jordanleong007@gmail.com" class="contact-link-val">jordanleong007@gmail.com</a>
+          </div>
+          <div class="contact-link-item">
+            <span class="contact-link-key">GitHub</span>
+            <a href="https://github.com/cl0udperry" target="_blank" rel="noopener" class="contact-link-val">cl0udperry</a>
+          </div>
+          <div class="contact-link-item">
+            <span class="contact-link-key">Project</span>
+            <a href="https://semio-ai.com" target="_blank" rel="noopener" class="contact-link-val">semio-ai.com</a>
+          </div>
+          <div class="contact-link-item">
+            <span class="contact-link-key">Audio</span>
+            <a href="https://perrivanaudio.com" target="_blank" rel="noopener" class="contact-link-val">perrivanaudio.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <span class="footer-copy">Jordan Leong — DevSecOps &amp; Security Automation Engineer</span>
+        <span class="footer-copy">© 2026</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- React scripts -->
+  <script type="text/babel">
+
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;width:100%;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">{children}</div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+function TweakColor({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <input type="color" className="twk-swatch" value={value}
+             onChange={(e) => onChange(e.target.value)} />
+    </div>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+</script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // ── CHAT WIDGET ──
+    const RESUME_CONTEXT = `
+You are Mini Jordan — a concise, confident chat assistant speaking in the first person as Jordan Leong.
+You answer questions about Jordan's work, skills, projects, certifications, education, and interests.
+Keep answers short (2-4 sentences). Be professional but human. Don't use bullet lists unless necessary.
+
+Key facts:
+- Jordan Leong, DevSecOps & AppSec Engineer at OCBC (Overseas Chinese Banking Corporation) since June 2022
+- Role: TISO — builds security automation, CI/CD pipeline security, manages CVE remediation
+- Skills: Python, Java, Shell, Groovy, Burp Suite, SAST, SCA, DAST, IAST, Jenkins, GitLab CI, AWS, Docker, Flask, FastAPI, OpenAI APIs
+- Projects: revmp (vulnerability management dashboard with Black Duck, Coverity, Jira APIs), Semio (AI-powered DevSecOps security platform)
+- Certs: CDP (Certified DevSecOps Professional), AWS Cloud Practitioner, eJPT
+- Education: NUS B.Eng Mechanical/Aeronautical, CAP 4.50/5.00
+- Interests: Tennis, audio reviews (perrivanaudio.com)
+- Contact: jordanleong007@gmail.com
+- Based in Singapore, fluent in English and Mandarin
+`;
+
+    function ChatWidget() {
+      const [messages, setMessages] = useState([
+        { role: 'bot', text: "I'm Jordan's resume-grounded assistant. Ask me about security automation, projects, certifications, or anything else on the page." }
+      ]);
+      const [input, setInput] = useState('');
+      const [loading, setLoading] = useState(false);
+      const endRef = useRef(null);
+
+      useEffect(() => {
+        if (endRef.current) {
+          endRef.current.parentNode.scrollTop = endRef.current.offsetTop;
+        }
+      }, [messages]);
+
+      const send = async (text) => {
+        const q = text || input.trim();
+        if (!q || loading) return;
+        setInput('');
+        setMessages(m => [...m, { role: 'user', text: q }]);
+        setLoading(true);
+        try {
+          const reply = await window.claude.complete({
+            messages: [
+              { role: 'user', content: RESUME_CONTEXT + '\n\nUser question: ' + q }
+            ]
+          });
+          setMessages(m => [...m, { role: 'bot', text: reply }]);
+        } catch(e) {
+          setMessages(m => [...m, { role: 'bot', text: 'Sorry, I ran into an issue. Try emailing directly at jordanleong007@gmail.com.' }]);
+        }
+        setLoading(false);
+      };
+
+      const chips = ['Security automation', 'Tell me about Semio', 'Certifications', 'Tennis?', 'Email Jordan'];
+
+      return (
+        <div className="chat-widget">
+          <div className="chat-header">
+            <span className="chat-header-title">Mini Jordan</span>
+            <span className="chat-status">Online</span>
+          </div>
+          <div className="chat-messages">
+            {messages.map((m, i) => (
+              <div key={i} className={`chat-msg ${m.role}`}>
+                <div className="chat-msg-label">{m.role === 'bot' ? 'Jordan' : 'You'}</div>
+                <div className="chat-bubble">{m.text}</div>
+              </div>
+            ))}
+            {loading && (
+              <div className="chat-msg bot">
+                <div className="chat-msg-label">Jordan</div>
+                <div className="chat-bubble" style={{opacity:0.5}}>Thinking...</div>
+              </div>
+            )}
+            <div ref={endRef}></div>
+          </div>
+          <div className="quick-chips">
+            {chips.map(c => (
+              <button key={c} className="chip" onClick={() => send(c)} disabled={loading}>{c}</button>
+            ))}
+          </div>
+          <form className="chat-form" onSubmit={e => { e.preventDefault(); send(); }}>
+            <input
+              className="chat-input"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              placeholder="Ask about Jordan's work..."
+              disabled={loading}
+            />
+            <button className="chat-send" type="submit" disabled={loading || !input.trim()}>Send</button>
+          </form>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('chat-root')).render(<ChatWidget />);
+
+    // ── TWEAKS ──
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "accentColor": "#B5441A",
+      "bgTone": "warm",
+      "typePairing": "condensed",
+      "motionLevel": "moderate"
+    }/*EDITMODE-END*/;
+
+    function TweaksApp() {
+      const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      useEffect(() => {
+        const root = document.documentElement;
+        const palettes = {
+          warm:    { bg: '#F4EFE6', bg2: '#EDE7DB', ink: '#1A1410', ink2: '#5C5248', ink3: '#9C8E82' },
+          cool:    { bg: '#EDF0F5', bg2: '#E0E5EE', ink: '#0E1117', ink2: '#3A4257', ink3: '#7A859A' },
+          neutral: { bg: '#F2F2EE', bg2: '#E8E8E2', ink: '#1A1A18', ink2: '#525250', ink3: '#909088' },
+        };
+        const p = palettes[tweaks.bgTone] || palettes.warm;
+        root.style.setProperty('--bg', p.bg);
+        root.style.setProperty('--bg2', p.bg2);
+        root.style.setProperty('--ink', p.ink);
+        root.style.setProperty('--ink2', p.ink2);
+        root.style.setProperty('--ink3', p.ink3);
+
+        // accent
+        root.style.setProperty('--accent', tweaks.accentColor);
+
+        // type
+        if (tweaks.typePairing === 'condensed') {
+          root.style.setProperty('--display', "'Barlow Condensed', sans-serif");
+        } else if (tweaks.typePairing === 'serif') {
+          root.style.setProperty('--display', "'DM Serif Display', serif");
+        } else {
+          root.style.setProperty('--display', "'Space Grotesk', sans-serif");
+        }
+
+        // motion
+        document.querySelectorAll('.fade-in').forEach(el => {
+          if (tweaks.motionLevel === 'none') {
+            el.classList.add('visible');
+          }
+        });
+      }, [tweaks]);
+
+      return (
+        <TweaksPanel title="Tweaks">
+          <TweakSection label="Accent Color">
+            <TweakColor id="accentColor" value={tweaks.accentColor} onChange={v => setTweak('accentColor', v)} />
+          </TweakSection>
+          <TweakSection label="Background Tone">
+            <TweakRadio
+              id="bgTone"
+              value={tweaks.bgTone}
+              options={[{value:'warm',label:'Warm'},{value:'cool',label:'Cool'},{value:'neutral',label:'Neutral'}]}
+              onChange={v => setTweak('bgTone', v)}
+            />
+          </TweakSection>
+          <TweakSection label="Display Type">
+            <TweakRadio
+              id="typePairing"
+              value={tweaks.typePairing}
+              options={[{value:'condensed',label:'Condensed'},{value:'serif',label:'Serif'},{value:'geometric',label:'Geo'}]}
+              onChange={v => setTweak('typePairing', v)}
+            />
+          </TweakSection>
+          <TweakSection label="Motion">
+            <TweakRadio
+              id="motionLevel"
+              value={tweaks.motionLevel}
+              options={[{value:'moderate',label:'On'},{value:'none',label:'Off'}]}
+              onChange={v => setTweak('motionLevel', v)}
+            />
+          </TweakSection>
+        </TweaksPanel>
+      );
+    }
+
+    const tweaksRoot = document.createElement('div');
+    document.body.appendChild(tweaksRoot);
+    ReactDOM.createRoot(tweaksRoot).render(<TweaksApp />);
+  </script>
+
+  <script>
+    // Scroll fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
 </html>
