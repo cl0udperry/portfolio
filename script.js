@@ -15,7 +15,7 @@ Promise.all([
     clearTimeout(failsafe);
 
     // ── Smooth scroll (Lenis) ───────────────────────────────────────────
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.12, smoothWheel: true });
     const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
 
