@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio resume for Jordan Leong, DevSecOps and Security Automation Engineer." />
-  <title>Jordan Leong — DevSecOps</title>
+  <meta name="description" content="Portfolio resume for Jordan Leong — security engineer working across enterprise security and application security." />
+  <title>Jordan Leong — Security Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -31,7 +31,7 @@
       --body:      'Barlow', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    /* scroll-behavior: smooth removed — conflicts with Lenis smooth scroll */
 
     body {
       background: var(--bg);
@@ -922,9 +922,9 @@
     <!-- HERO -->
     <section id="hero">
       <div class="hero-left fade-in">
-        <div class="hero-eyebrow">DevSecOps Engineer</div>
+        <div class="hero-eyebrow">Enterprise Security &amp; AppSec Engineer</div>
         <h1 class="hero-name">Jordan<span>Leong</span></h1>
-        <p class="hero-tagline">Security automation, CI/CD workflows, vulnerability management, and AI-assisted remediation.</p>
+        <p class="hero-tagline">Across application security and enterprise security — zero-trust architecture, vulnerability management, CI/CD automation, and AI-assisted defense.</p>
         <div class="hero-ctas">
           <a href="#experience" class="btn-primary">View Work</a>
           <a href="#contact" class="btn-ghost">Get In Touch</a>
@@ -933,11 +933,11 @@
       <div class="hero-right fade-in" style="transition-delay:0.15s">
         <div class="hero-stat">
           <div class="hero-stat-label">Current Role</div>
-          <div class="hero-stat-value">TISO — OCBC</div>
+          <div class="hero-stat-value">Sec Engineer — ByteDance</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-label">Specialisation</div>
-          <div class="hero-stat-value">AppSec &amp; DevSecOps</div>
+          <div class="hero-stat-value">Enterprise &amp; AppSec</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-label">Base</div>
@@ -964,13 +964,11 @@
         </div>
         <div>
           <p class="about-body">
-            I turn <strong>security friction into systems</strong> that help teams ship with confidence.
-            Currently focused on secure delivery, SAST/SCA/DAST/IAST adoption, Jira automation,
-            secure code review, and practical <strong>AI tooling for AppSec workflows</strong>.
+            I turn <strong>security friction into systems</strong> that defend at scale. Today that spans enterprise security at ByteDance — zero-trust, endpoint, network, email, and vulnerability management — built on the <strong>AppSec and DevSecOps foundation</strong> I shaped at OCBC.
           </p>
           <p class="about-body">
             I approach security the same way I approach a tennis match — <strong>patience, positioning, and the small adjustments
-            that change momentum</strong>. Enterprise-scale at OCBC, side projects that ship real product.
+            that change momentum</strong>. From CI/CD pipeline to enterprise perimeter, the work rhymes: anticipate, automate, adjust.
           </p>
           <div class="about-meta">
             <div class="about-meta-item">
@@ -996,7 +994,21 @@
       <h2 class="section-heading fade-in">Secure delivery<br/>at enterprise scale.</h2>
       <div class="exp-list">
         <div class="exp-item fade-in">
-          <div class="exp-date">Jun 2022<br/>Present</div>
+          <div class="exp-date">Nov 2025<br/>Present</div>
+          <div class="exp-right">
+            <div class="exp-company">ByteDance</div>
+            <div class="exp-role">Enterprise Security Engineer</div>
+            <ul class="exp-bullets">
+              <li>Operate the enterprise security stack — firewall, secure web gateway, EDR, email security, and unified endpoint management.</li>
+              <li>Run vulnerability scanning and remediation programs across the enterprise asset surface.</li>
+              <li>Engineer zero-trust architecture controls across users, devices, and applications.</li>
+              <li>Codify security infrastructure as code through Jenkins pipelines for reproducible, reviewable rollouts.</li>
+              <li>Build automation and analytics tooling that compresses SecOps response time and decision overhead.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item fade-in">
+          <div class="exp-date">Jun 2022<br/>Oct 2025</div>
           <div class="exp-right">
             <div class="exp-company">OCBC</div>
             <div class="exp-role">TISO — DevSecOps &amp; Application Security Engineer</div>
@@ -1053,7 +1065,7 @@
     <!-- SKILLS -->
     <section id="skills">
       <div class="section-label fade-in">Toolbox</div>
-      <h2 class="section-heading fade-in">Comfortable from<br/>pipeline to proof-of-exploit.</h2>
+      <h2 class="section-heading fade-in">Comfortable from<br/>pipeline to enterprise perimeter.</h2>
       <div class="skills-grid fade-in">
         <div class="skill-cell">
           <div class="skill-category">Languages</div>
@@ -1065,7 +1077,7 @@
           </div>
         </div>
         <div class="skill-cell">
-          <div class="skill-category">Security</div>
+          <div class="skill-category">App Security</div>
           <div class="skill-items">
             <div class="skill-item">Burp Suite</div>
             <div class="skill-item">SAST</div>
@@ -1074,7 +1086,16 @@
           </div>
         </div>
         <div class="skill-cell">
-          <div class="skill-category">CI/CD &amp; Cloud</div>
+          <div class="skill-category">Enterprise Security</div>
+          <div class="skill-items">
+            <div class="skill-item">EDR</div>
+            <div class="skill-item">Zero-Trust</div>
+            <div class="skill-item">SWG · Firewall</div>
+            <div class="skill-item">Vuln Mgmt · UEM</div>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-category">CI/CD &amp; IaC</div>
           <div class="skill-items">
             <div class="skill-item">Jenkins</div>
             <div class="skill-item">GitLab CI</div>
@@ -1083,19 +1104,12 @@
           </div>
         </div>
         <div class="skill-cell">
-          <div class="skill-category">Frameworks</div>
-          <div class="skill-items">
-            <div class="skill-item">Flask</div>
-            <div class="skill-item">FastAPI</div>
-            <div class="skill-item">Gradio</div>
-          </div>
-        </div>
-        <div class="skill-cell">
-          <div class="skill-category">AI &amp; APIs</div>
+          <div class="skill-category">Automation &amp; AI</div>
           <div class="skill-items">
             <div class="skill-item">OpenAI APIs</div>
             <div class="skill-item">Semgrep</div>
             <div class="skill-item">Jira Auto.</div>
+            <div class="skill-item">FastAPI</div>
           </div>
         </div>
       </div>
@@ -1219,7 +1233,7 @@
         </div>
       </div>
       <div class="footer-bar">
-        <span class="footer-copy">Jordan Leong — DevSecOps &amp; Security Automation Engineer</span>
+        <span class="footer-copy">Jordan Leong — Security Engineer · Enterprise Security &amp; AppSec</span>
         <span class="footer-copy">© 2026</span>
       </div>
     </div>
@@ -1666,15 +1680,14 @@ You answer questions about Jordan's work, skills, projects, certifications, educ
 Keep answers short (2-4 sentences). Be professional but human. Don't use bullet lists unless necessary.
 
 Key facts:
-- Jordan Leong, DevSecOps & AppSec Engineer at OCBC (Overseas Chinese Banking Corporation) since June 2022
-- Role: TISO — builds security automation, CI/CD pipeline security, manages CVE remediation
-- Skills: Python, Java, Shell, Groovy, Burp Suite, SAST, SCA, DAST, IAST, Jenkins, GitLab CI, AWS, Docker, Flask, FastAPI, OpenAI APIs
-- Projects: revmp (vulnerability management dashboard with Black Duck, Coverity, Jira APIs), Semio (AI-powered DevSecOps security platform)
+- Jordan Leong — Security Engineer based in Singapore, fluent EN/ZH
+- Currently: Enterprise Security Engineer at ByteDance (Nov 2025–present) — operates and engineers controls across firewall, secure web gateway, EDR, email security, UEM, vulnerability management, and zero-trust architecture; codifies security infra as code via Jenkins; builds automation and analytics for SecOps
+- Previously: TISO at OCBC (Jun 2022–Oct 2025) — DevSecOps & Application Security Engineer; built Python automation across CI/CD security, led IAST/DAST rollout, ran CVE remediation, performed secure code review and Burp Suite pentesting
+- Projects: revmp (vulnerability management dashboard with Black Duck, Coverity, Jira APIs), Semio (AI-powered DevSecOps platform on FastAPI + Semgrep)
 - Certs: CDP (Certified DevSecOps Professional), AWS Cloud Practitioner, eJPT
 - Education: NUS B.Eng Mechanical/Aeronautical, CAP 4.50/5.00
 - Interests: Tennis, audio reviews (perrivanaudio.com)
 - Contact: jordanleong007@gmail.com
-- Based in Singapore, fluent in English and Mandarin
 `;
 
     function ChatWidget() {
@@ -1710,7 +1723,7 @@ Key facts:
         setLoading(false);
       };
 
-      const chips = ['Security automation', 'Tell me about Semio', 'Certifications', 'Tennis?', 'Email Jordan'];
+      const chips = ['Enterprise security', 'Zero-trust', 'Tell me about Semio', 'Certifications', 'Email Jordan'];
 
       return (
         <div className="chat-widget">
