@@ -945,13 +945,13 @@
         </div>
         <div class="hero-stat">
           <div class="hero-stat-label">Projects</div>
-          <div class="hero-stat-value">Semio / revmp</div>
+          <div class="hero-stat-value">revmp · Semio (2025)</div>
         </div>
       </div>
       <div class="hero-bottom-bar fade-in" style="transition-delay:0.3s">
         <div class="hero-bottom-item"><a href="mailto:jordanleong007@gmail.com">jordanleong007@gmail.com</a></div>
         <div class="hero-bottom-item"><a href="https://github.com/cl0udperry" target="_blank" rel="noopener">github.com/cl0udperry</a></div>
-        <div class="hero-bottom-item"><a href="https://semio-ai.com" target="_blank" rel="noopener">semio-ai.com</a></div>
+        <div class="hero-bottom-item"><a href="https://perrivanaudio.com" target="_blank" rel="noopener">perrivanaudio.com</a></div>
       </div>
     </section>
 
@@ -1053,10 +1053,10 @@
           </div>
           <div class="project-card fade-in" style="transition-delay:0.1s">
             <div class="project-num">02</div>
-            <div class="project-tag">FastAPI · Gradio · Semgrep · Docker · AI</div>
+            <div class="project-tag">FastAPI · Gradio · Semgrep · Docker · AI &nbsp;·&nbsp; 2025 POC</div>
             <h3 class="project-title">Semio</h3>
-            <p class="project-desc">AI in DevSecOps Security Platform. FastAPI and Gradio platform for AI-powered vulnerability analysis, Semgrep pipeline ingestion, contextual fix recommendations, and automated security reporting.</p>
-            <a href="https://semio-ai.com" target="_blank" rel="noopener" class="project-link">Visit Semio</a>
+            <p class="project-desc">An early experiment in AI-assisted AppSec. FastAPI and Gradio platform for vulnerability analysis, Semgrep pipeline ingestion, and automated security reporting — a useful POC before the agentic AI wave reshaped the space.</p>
+            <a href="https://github.com/cl0udperry" target="_blank" rel="noopener" class="project-link">github.com/cl0udperry</a>
           </div>
         </div>
       </div>
@@ -1190,8 +1190,8 @@
         </div>
         <div class="cred-cell">
           <div class="cred-label">Founder</div>
-          <div class="cred-title">Semio · Perrivan Audio</div>
-          <div class="cred-sub">Two active side projects with real users</div>
+          <div class="cred-title">Perrivan Audio · Semio (2025)</div>
+          <div class="cred-sub">Audio review site with real readers; Semio as an early AI/AppSec experiment</div>
         </div>
       </div>
     </section>
@@ -1224,7 +1224,7 @@
           </div>
           <div class="contact-link-item">
             <span class="contact-link-key">Project</span>
-            <a href="https://semio-ai.com" target="_blank" rel="noopener" class="contact-link-val">semio-ai.com</a>
+            <a href="https://github.com/cl0udperry/revmp" target="_blank" rel="noopener" class="contact-link-val">revmp</a>
           </div>
           <div class="contact-link-item">
             <span class="contact-link-key">Audio</span>
@@ -1683,12 +1683,43 @@ Key facts:
 - Jordan Leong — Security Engineer based in Singapore, fluent EN/ZH
 - Currently: Enterprise Security Engineer at ByteDance (Nov 2025–present) — operates and engineers controls across firewall, secure web gateway, EDR, email security, UEM, vulnerability management, and zero-trust architecture; codifies security infra as code via Jenkins; builds automation and analytics for SecOps
 - Previously: TISO at OCBC (Jun 2022–Oct 2025) — DevSecOps & Application Security Engineer; built Python automation across CI/CD security, led IAST/DAST rollout, ran CVE remediation, performed secure code review and Burp Suite pentesting
-- Projects: revmp (vulnerability management dashboard with Black Duck, Coverity, Jira APIs), Semio (AI-powered DevSecOps platform on FastAPI + Semgrep)
+- Projects: revmp (open-source vulnerability management dashboard with Black Duck, Coverity, Jira APIs), Semio (2025 POC — AI-powered AppSec platform on FastAPI + Semgrep; early experiment)
 - Certs: CDP (Certified DevSecOps Professional), AWS Cloud Practitioner, eJPT
 - Education: NUS B.Eng Mechanical/Aeronautical, CAP 4.50/5.00
 - Interests: Tennis, audio reviews (perrivanaudio.com)
 - Contact: jordanleong007@gmail.com
 `;
+
+    function getReply(question) {
+      const q = question.toLowerCase();
+      if (/enterprise|bytedance|firewall|edr|endpoint|swg|gateway|email.*secur|uem|unified/.test(q))
+        return "At ByteDance I engineer and operate enterprise security controls — EDR, secure web gateway, firewall, email security, UEM, and zero-trust network access. I also run vulnerability management and build automation for SecOps analytics, with infrastructure-as-code through Jenkins.";
+      if (/zero.trust|ztna|zta/.test(q))
+        return "Zero-trust is a core part of my ByteDance work — I design and operate ZTNA controls that enforce least-privilege access across the org, replacing implicit trust with identity-based verification at every layer.";
+      if (/ocbc|appsec|application.*sec|devsecops|sast|dast|iast|sca|burp|ci.?cd|pipeline/.test(q))
+        return "At OCBC (Jun 2022–Oct 2025) I was a TISO specialising in DevSecOps and AppSec. I built Python automation for CI/CD security pipelines, led IAST and DAST rollout, managed CVE remediation at scale, and ran Burp Suite pentests alongside secure code reviews.";
+      if (/semio/.test(q))
+        return "Semio was a 2025 POC — a FastAPI and Gradio platform for AI-powered vulnerability analysis and automated Semgrep reporting. A useful experiment, though the agentic AI space has moved fast since then.";
+      if (/revmp|vulnerability.*dash|vuln.*dash|dashboard/.test(q))
+        return "revmp is an open-source vulnerability management dashboard built with Flask and Chart.js. It integrates Black Duck SCA, Coverity SAST, and Jira APIs for tracking and deduplication across commits. Find it at github.com/cl0udperry/revmp.";
+      if (/project|side.*project|build|ship/.test(q))
+        return "My main project is revmp — an open-source vulnerability management dashboard that integrates SCA, SAST, and Jira APIs. I also built Semio in 2025, an AI-powered AppSec POC on FastAPI. Both grew from real pain points I hit at work.";
+      if (/cert|cdp|aws|ejpt|penetration|certif/.test(q))
+        return "I hold three certifications: Certified DevSecOps Professional (CDP), AWS Certified Cloud Practitioner, and eJPT (Junior Penetration Tester from eLearnSecurity).";
+      if (/education|nus|degree|gpa|university|mechanical|aeronautical|cap/.test(q))
+        return "I studied Mechanical Engineering with an Aeronautical specialisation at NUS, graduating with a CAP of 4.50 / 5.00. The engineering fundamentals — systems thinking, constraints, trade-offs — transfer well to security architecture.";
+      if (/tennis|sport|hobby|interest|outside|beyond|personal/.test(q))
+        return "I play tennis — the tactical rhythm of patience and momentum shifts maps well to security work. Outside that I write earphone reviews at perrivanaudio.com, shaped by a long-running love for music.";
+      if (/audio|perrivan|earphone|music|review/.test(q))
+        return "I run perrivanaudio.com — an earphone review site I've been building for years. Writing about what you hear trains precise, honest observation.";
+      if (/email|contact|reach|hire|talk|get in touch/.test(q))
+        return "Best way to reach me is jordanleong007@gmail.com. You can also find my code at github.com/cl0udperry.";
+      if (/skill|tool|stack|language|python|java|docker|jenkins|tech/.test(q))
+        return "I work across Python, Java, Shell, and Groovy; Jenkins and GitLab CI for pipelines; AWS and Docker for infra. On the AppSec side: Burp Suite, SAST, SCA, DAST, IAST. On the enterprise side: EDR, SWG, firewall, UEM, and ZTA tooling.";
+      if (/about|who|background|overview|summary/.test(q))
+        return "I'm Jordan Leong — Enterprise Security Engineer at ByteDance since Nov 2025, running controls across EDR, firewall, zero-trust, and vuln management. Before that, three years at OCBC as a TISO in DevSecOps and AppSec. NUS engineering grad, based in Singapore.";
+      return "Happy to help — try asking about my current role at ByteDance, the AppSec work at OCBC, my projects (revmp), certifications, or just reach out at jordanleong007@gmail.com.";
+    }
 
     function ChatWidget() {
       const [messages, setMessages] = useState([
@@ -1704,26 +1735,19 @@ Key facts:
         }
       }, [messages]);
 
-      const send = async (text) => {
+      const send = (text) => {
         const q = text || input.trim();
         if (!q || loading) return;
         setInput('');
         setMessages(m => [...m, { role: 'user', text: q }]);
         setLoading(true);
-        try {
-          const reply = await window.claude.complete({
-            messages: [
-              { role: 'user', content: RESUME_CONTEXT + '\n\nUser question: ' + q }
-            ]
-          });
-          setMessages(m => [...m, { role: 'bot', text: reply }]);
-        } catch(e) {
-          setMessages(m => [...m, { role: 'bot', text: 'Sorry, I ran into an issue. Try emailing directly at jordanleong007@gmail.com.' }]);
-        }
-        setLoading(false);
+        setTimeout(() => {
+          setMessages(m => [...m, { role: 'bot', text: getReply(q) }]);
+          setLoading(false);
+        }, 420);
       };
 
-      const chips = ['Enterprise security', 'Zero-trust', 'Tell me about Semio', 'Certifications', 'Email Jordan'];
+      const chips = ['Enterprise security', 'Zero-trust', 'My projects', 'Certifications', 'Email Jordan'];
 
       return (
         <div className="chat-widget">
